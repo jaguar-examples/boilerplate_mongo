@@ -20,6 +20,9 @@ abstract class _$TodoItemMongoSerializer implements Serializer<TodoItem> {
       if (model.message != null) {
         ret["message"] = model.message;
       }
+      if (model.finished != null) {
+        ret["finished"] = model.finished;
+      }
     }
     return ret;
   }
@@ -34,6 +37,7 @@ abstract class _$TodoItemMongoSerializer implements Serializer<TodoItem> {
     model.id = new MongoId(#id).from(map["_id"]);
     model.title = map["title"];
     model.message = map["message"];
+    model.finished = map["finished"];
     return model;
   }
 
@@ -58,6 +62,9 @@ abstract class _$TodoItemSerializer implements Serializer<TodoItem> {
       if (model.message != null) {
         ret["message"] = model.message;
       }
+      if (model.finished != null) {
+        ret["finished"] = model.finished;
+      }
     }
     return ret;
   }
@@ -72,6 +79,7 @@ abstract class _$TodoItemSerializer implements Serializer<TodoItem> {
     model.id = map["id"];
     model.title = map["title"];
     model.message = map["message"];
+    model.finished = map["finished"];
     return model;
   }
 
