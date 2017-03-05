@@ -7,7 +7,7 @@ Contains sample code for
 1. Model
 2. JSON serializer
 3. Mongo serializer
-4. Sample CURD API
+4. Sample CRUD API
 5. Example client
 
 ## Features and bugs
