@@ -86,6 +86,7 @@ main() async {
   await deleteAll();
   print('Inserting new:');
   Map data = await insert({"title": "Title 1", "message": "Message 1", "finished": false});
+  print('Get all:');
   await getAll();
   print('Getting by id ${data['id']}:');
   await getById(data['id']);
@@ -93,6 +94,7 @@ main() async {
   data['title'] = "New title";
   data['message'] = "New message";
   await update(data);
+  print('Get all:');
   await getAll();
   print('Setting finished:');
   await setFinished(data['id']);
@@ -102,6 +104,7 @@ main() async {
   await getById(data['id']);
   print('Deleting by id ${data['id']}');
   await deleteById(data['id']);
+  print('Get all:');
   await getAll();
   exit(0);
 }
