@@ -10,32 +10,20 @@ import 'package:jaguar_serializer/serializer.dart';
 import 'package:jaguar_serializer_mongo/jaguar_serializer_mongo.dart';
 import 'package:jaguar_mongo/jaguar_mongo.dart';
 
+import 'package:boilerplate_mongo/model/model.dart';
+
+export 'package:boilerplate_mongo/model/model.dart';
+
 part 'api.g.dart';
 
 const mongoUrl = "mongodb://localhost:27018/todos";
 const todoColl = "todo";
-
-class TodoItem {
-  String id;
-
-  String title;
-
-  String message;
-
-  bool finished;
-}
 
 @GenSerializer()
 @MongoId(#id)
 @EnDecodeField(#id, asAndFrom: '_id')
 class TodoItemMongoSerializer extends Serializer<TodoItem>
     with _$TodoItemMongoSerializer {
-  TodoItem createModel() => new TodoItem();
-}
-
-@GenSerializer()
-class TodoItemSerializer extends Serializer<TodoItem>
-    with _$TodoItemSerializer {
   TodoItem createModel() => new TodoItem();
 }
 
@@ -52,6 +40,7 @@ class TodoApi {
   Future<Response<String>> getAll(Context ctx) async {
     mgo.Db db = ctx.getInput<mgo.Db>(MongoDb);
     final coll = db.collection(todoColl);
+
     List<Map> res = await (await coll.find()).map(_mgoToJson).toList();
     return Response.json(res);
   }
@@ -61,6 +50,7 @@ class TodoApi {
     String id = ctx.pathParams['id'];
     mgo.Db db = ctx.getInput<mgo.Db>(MongoDb);
     final coll = db.collection(todoColl);
+
     Map res = await coll.findOne(mgo.where.id(mgo.ObjectId.parse(id)));
     return Response.json(_mgoToJson(res));
   }
@@ -75,8 +65,8 @@ class TodoApi {
     final coll = db.collection(todoColl);
     await coll.insert(mongoSerializer.toMap(todo));
 
-    Map res = await coll.findOne(mgo.where.id(mgo.ObjectId.parse(id)));
-    return Response.json(_mgoToJson(res));
+    List<Map> res = await (await coll.find()).map(_mgoToJson).toList();
+    return Response.json(res);
   }
 
   @Put()
@@ -117,11 +107,14 @@ class TodoApi {
   }
 
   @Delete(path: '/:id')
-  Future deleteById(Context ctx) async {
+  Future<Response<String>> deleteById(Context ctx) async {
     String id = ctx.pathParams['id'];
     mgo.Db db = ctx.getInput<mgo.Db>(MongoDb);
     final coll = db.collection(todoColl);
     await coll.remove(mgo.where.id(mgo.ObjectId.parse(id)));
+
+    List<Map> res = await (await coll.find()).map(_mgoToJson).toList();
+    return Response.json(res);
   }
 
   @Delete()

@@ -1,20 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of boilerplate_mongo.api;
+part of model;
 
 // **************************************************************************
 // Generator: SerializerGenerator
-// Target: class TodoItemMongoSerializer
+// Target: class TodoItemSerializer
 // **************************************************************************
 
-abstract class _$TodoItemMongoSerializer implements Serializer<TodoItem> {
-  final MongoId idMongoId = const MongoId(#id);
-
+abstract class _$TodoItemSerializer implements Serializer<TodoItem> {
   Map toMap(TodoItem model, {bool withType: false, String typeKey}) {
     Map ret = new Map();
     if (model != null) {
       if (model.id != null) {
-        ret["_id"] = idMongoId.serialize(model.id);
+        ret["id"] = model.id;
       }
       if (model.title != null) {
         ret["title"] = model.title;
@@ -36,7 +34,7 @@ abstract class _$TodoItemMongoSerializer implements Serializer<TodoItem> {
     if (model is! TodoItem) {
       model = createModel();
     }
-    model.id = idMongoId.deserialize(map["_id"]);
+    model.id = map["id"];
     model.title = map["title"];
     model.finished = map["finished"];
     return model;
