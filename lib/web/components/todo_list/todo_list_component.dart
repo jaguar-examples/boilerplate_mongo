@@ -43,7 +43,7 @@ class TodoListComponent implements OnInit {
   }
 
   Future<Null> updateFinished(TodoItem item, bool finished) async {
-    if(finished) {
+    if (finished) {
       item.clone(await service.setFinished(item.id));
     } else {
       item.clone(await service.setUnfinished(item.id));

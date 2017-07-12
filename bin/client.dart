@@ -16,8 +16,6 @@ Future<Null> printHttpClientResponse(http.Response resp) async {
   print(resp.body);
   print("statusCode:");
   print(resp.statusCode);
-  print("headers:");
-  print(resp.headers);
   print('=========================');
 }
 
@@ -85,7 +83,8 @@ main() async {
   print('Deleting all:');
   await deleteAll();
   print('Inserting new:');
-  Map data = await insert({"title": "Title 1", "message": "Message 1", "finished": false});
+  Map data = await insert(
+      {"title": "Title 1", "message": "Message 1", "finished": false});
   print('Get all:');
   await getAll();
   print('Getting by id ${data['id']}:');

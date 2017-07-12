@@ -9,11 +9,10 @@ environment:
   sdk: '>=1.0.0 <2.0.0'
 
 dependencies:
-  jaguar: '>=0.5.3 <0.6.0'
+  jaguar: ^0.6.5
   jaguar_mongo: '>=0.5.0 <0.6.0'
   jaguar_serializer: '>=0.3.4 <0.4.0'
   jaguar_serializer_mongo: '>=0.0.2 <0.1.0'
-  jaguar_reflect: '>=0.5.1 <0.6.0'
   http: any
   jaguar_dev_proxy: ^0.0.4
   teja_http_json: ^0.1.0

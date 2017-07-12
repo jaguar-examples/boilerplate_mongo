@@ -65,8 +65,8 @@ class TodoApi {
     final coll = db.collection(todoColl);
     await coll.insert(mongoSerializer.toMap(todo));
 
-    List<Map> res = await (await coll.find()).map(_mgoToJson).toList();
-    return Response.json(res);
+    Map res = await coll.findOne(mgo.where.id(mgo.ObjectId.parse(id)));
+    return Response.json(_mgoToJson(res));
   }
 
   @Put()
