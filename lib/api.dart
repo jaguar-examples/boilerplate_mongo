@@ -22,8 +22,7 @@ class TodoApi extends Controller {
   Future<List<TodoItem>> getAll(Context ctx) async {
     final db = await mgoPool(ctx);
     final coll = db.collection(todoColl);
-    final ret = await coll.find().map(mongoSerializer.fromMap).toList();
-    return ret;
+    return await coll.find().map(mongoSerializer.fromMap).toList();
   }
 
   @PostJson()
