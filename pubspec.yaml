@@ -6,31 +6,17 @@ authors:
 homepage: http://jaguar-dart.github.io
 
 environment:
-  sdk: '>=1.0.0 <2.0.0'
+  sdk: '>=2.0.0 <3.0.0'
 
 dependencies:
-  jaguar: ^0.6.5
-  jaguar_mongo: '>=0.5.0 <0.6.0'
-  jaguar_serializer: '>=0.3.4 <0.4.0'
-  jaguar_serializer_mongo: '>=0.0.2 <0.1.0'
+  jaguar: ^2.4.16
+  jaguar_mongo: ^2.4.1
+  jaguar_serializer: ^2.2.5
+  jaguar_serializer_mongo: ^2.2.1
   http: any
-  jaguar_dev_proxy: ^0.0.4
-  teja_http_json: ^0.1.0
-  jaguar_static_file: ^0.5.1
-  angular2: ^3.0.0
-  angular_components: ^0.5.1
+  jaguar_reflect:
 
 dev_dependencies:
-  angular_test: ^1.0.0-beta+2
-  browser: ^0.10.0
-  dart_to_js_script_rewriter: ^1.0.1
-  test: ^0.12.0
-
-transformers:
-- angular2:
-    entry_points: web/main.dart
-- angular2/transform/reflection_remover:
-    $include: test/**_test.dart
-- test/pub_serve:
-    $include: test/**_test.dart
-- dart_to_js_script_rewriter
+  test:
+  build_runner:
+  jaguar_serializer_cli:
